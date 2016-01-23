@@ -5,6 +5,7 @@
 #include<sys/types.h>
 #include<sys/socket.h>
 #include<netinet/in.h>
+#include"socket.h"
 
 #define MAXLINE 4096
 #define PORT 6666
