@@ -5,7 +5,7 @@
 #include<sys/types.h>
 #include<sys/socket.h>
 #include<netinet/in.h>
-#include <sys/select.h>
+#include<sys/select.h>
 #include "socket.h"
 
 #define MAXLINE 4096
@@ -21,6 +21,8 @@ typedef struct pool {
   int clientfd[FD_SETSIZE];
 } POOL;
 
+/*初始化pool*/
+static
 void init_pool(int listenfd, POOL *p) {
   int i;
   p->maxi = -1;
@@ -34,6 +36,7 @@ void init_pool(int listenfd, POOL *p) {
 }
 
 /*插入客户端fd到pool*/
+static
 void add_client(int connfd, POOL *p) {
   int i;
   p->nready--;
@@ -62,6 +65,7 @@ void add_client(int connfd, POOL *p) {
   }
 }
 
+static
 void deal_msg(POOL *p) {
   int i, connfd, n;
   char buff[MAXLINE];
